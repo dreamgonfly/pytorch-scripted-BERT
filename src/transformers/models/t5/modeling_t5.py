@@ -1547,6 +1547,7 @@ class T5ForConditionalGeneration(T5PreTrainedModel):
         head_mask: Optional[torch.FloatTensor] = None,
         decoder_head_mask: Optional[torch.FloatTensor] = None,
         cross_attn_head_mask: Optional[torch.Tensor] = None,
+        cross_attn_mask: Optional[torch.Tensor] = None,
         encoder_outputs: Optional[Tuple[Tuple[torch.Tensor]]] = None,
         past_key_values: Optional[Tuple[Tuple[torch.Tensor]]] = None,
         inputs_embeds: Optional[torch.FloatTensor] = None,
@@ -1643,7 +1644,7 @@ class T5ForConditionalGeneration(T5PreTrainedModel):
             inputs_embeds=decoder_inputs_embeds,
             past_key_values=past_key_values,
             encoder_hidden_states=hidden_states,
-            encoder_attention_mask=attention_mask,
+            encoder_attention_mask=cross_attn_mask,
             head_mask=decoder_head_mask,
             cross_attn_head_mask=cross_attn_head_mask,
             use_cache=use_cache,
@@ -1697,6 +1698,7 @@ class T5ForConditionalGeneration(T5PreTrainedModel):
         head_mask=None,
         decoder_head_mask=None,
         cross_attn_head_mask=None,
+        cross_attn_mask=None,
         use_cache=None,
         encoder_outputs=None,
         **kwargs
@@ -1714,6 +1716,7 @@ class T5ForConditionalGeneration(T5PreTrainedModel):
             "head_mask": head_mask,
             "decoder_head_mask": decoder_head_mask,
             "cross_attn_head_mask": cross_attn_head_mask,
+            "cross_attn_mask": cross_attn_mask,
             "use_cache": use_cache,
         }
 
